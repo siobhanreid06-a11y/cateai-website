@@ -1266,14 +1266,14 @@
   }
 
   /* Left — portrait + floating stats */
-  .origin-visual {
+  .origin-visual { align-self: flex-start; padding-top: 0;
     position: relative;
   }
 
-  .portrait-frame {
+  .portrait-frame { margin-top: 0 !important;
     width: 100%;
     max-width: 420px;
-    aspect-ratio: 3/2.8;
+    height: auto;
     background: linear-gradient(145deg, var(--purple-dark), var(--purple));
     border-radius: 20px;
     position: relative;
@@ -1852,7 +1852,7 @@
   /* ─── Responsive ─── */
   @media (max-width: 1000px) {
     .origin-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .portrait-frame { max-width: 100%; aspect-ratio: 3/2; }
+    .portrait-frame { margin-top: 0 !important; max-width: 100%; aspect-ratio: 3/2; }
     .float-stat-1 { bottom: 10px; right: 10px; }
     .float-stat-2 { top: 10px; left: 10px; }
     .values-grid { grid-template-columns: 1fr 1fr; }
@@ -2009,7 +2009,7 @@
     <li><a href="#sectors">Who We Serve</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact">Contact Us</a></li>
-    <li><a href="mailto:hello@cateai.ie" class="nav-cta">Book a Demo</a></li>
+    <li><a href="http://hub.cateai.ie" target="_blank" style="color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.85rem;">People Hub™</a></li><li><a href="mailto:hello@cateai.ie" class="nav-cta">Book a Demo</a></li>
   </ul>
 </nav>
 
@@ -2166,7 +2166,7 @@
         <div style="display:flex;flex-direction:column;gap:0.85rem;">
           <div style="display:flex;align-items:center;gap:0.85rem;background:rgba(255,255,255,0.07);border-radius:10px;padding:0.85rem 1rem;">
             <div style="font-size:1.3rem;flex-shrink:0;">🎓</div>
-            <div><div style="color:var(--white);font-size:0.82rem;font-weight:600;">CIPD Qualified</div><div style="color:rgba(255,255,255,0.55);font-size:0.72rem;">People &amp; Culture Professional</div></div>
+            <div><div style="color:var(--white);font-size:0.82rem;font-weight:600;">Professionally Qualified</div><div style="color:rgba(255,255,255,0.55);font-size:0.72rem;">People &amp; Culture Professional</div></div>
           </div>
           <div style="display:flex;align-items:center;gap:0.85rem;background:rgba(255,255,255,0.07);border-radius:10px;padding:0.85rem 1rem;">
             <div style="font-size:1.3rem;flex-shrink:0;">📅</div>
@@ -2363,7 +2363,7 @@
             <div style="width:40px; height:40px; border-radius:50%; background:rgba(196,145,58,0.25); border:1.5px solid var(--gold); display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--gold); font-size:0.85rem; flex-shrink:0;">MD</div>
             <div>
               <div style="font-size:0.82rem; font-weight:700; color:#fff;">Margaret Dunne</div>
-              <div style="font-size:0.72rem; color:rgba(255,255,255,0.5);">CEO · Housing Association client</div>
+              <div style="font-size:0.72rem; color:rgba(255,255,255,0.5);">CEO · Client</div>
             </div>
           </div>
         </div>
@@ -2433,7 +2433,7 @@
           <div class="testi-avatar avatar-b">PC</div>
           <div class="testi-info">
             <div class="testi-name">Paul Connolly</div>
-            <div class="testi-org">CEO · Community Action Network (NFP)</div>
+            <div class="testi-org">CEO · NFP Client</div>
             <span class="testi-tag">Full Suite</span>
           </div>
         </div>
@@ -3054,6 +3054,37 @@
 
 
 <!-- FOOTER -->
+
+<!-- PRIVACY POLICY -->
+<section id="privacy" style="background:#F5F5F5; padding:60px 5%;">
+  <div style="max-width:800px; margin:0 auto;">
+    <h2 style="color:#3D1F6E; font-size:1.8rem; font-weight:800; margin-bottom:1rem;">Privacy & Cookie Policy</h2>
+    <div style="background:#fff; border-radius:14px; padding:2rem; border:1px solid #E8DFFF;">
+      
+      <h3 style="color:#3D1F6E; font-size:1.1rem; margin-bottom:0.75rem;">Who we are</h3>
+      <p style="color:#718096; font-size:0.9rem; line-height:1.8; margin-bottom:1.5rem;">CateAI Culture Pulse™ is a People & Culture analytics service operated by Siobhan Reid, trading as CateAI, based in Ireland. Contact: <a href="mailto:hello@cateai.ie" style="color:#C4913A;">hello@cateai.ie</a></p>
+
+      <h3 style="color:#3D1F6E; font-size:1.1rem; margin-bottom:0.75rem;">What data we collect</h3>
+      <p style="color:#718096; font-size:0.9rem; line-height:1.8; margin-bottom:1.5rem;">When you contact us or book a demo, we collect your name and email address. If you are a client, we process anonymised employee HR data on your behalf under a signed Data Processing Agreement. We do not collect data through this website beyond contact enquiries.</p>
+
+      <h3 style="color:#3D1F6E; font-size:1.1rem; margin-bottom:0.75rem;">How we use your data</h3>
+      <p style="color:#718096; font-size:0.9rem; line-height:1.8; margin-bottom:1.5rem;">Contact data is used solely to respond to your enquiry. Client HR data is used only to produce the agreed monthly dashboard and People Hub. We do not sell, share or use data for any other purpose.</p>
+
+      <h3 style="color:#3D1F6E; font-size:1.1rem; margin-bottom:0.75rem;">Cookies</h3>
+      <p style="color:#718096; font-size:0.9rem; line-height:1.8; margin-bottom:1.5rem;">This website does not use tracking cookies or advertising cookies. We do not use Google Analytics or any third-party tracking tools. The only cookies that may be set are strictly necessary technical cookies required for the website to function.</p>
+
+      <h3 style="color:#3D1F6E; font-size:1.1rem; margin-bottom:0.75rem;">Your rights</h3>
+      <p style="color:#718096; font-size:0.9rem; line-height:1.8; margin-bottom:1.5rem;">Under GDPR you have the right to access, correct or delete any personal data we hold about you. To exercise these rights, contact us at <a href="mailto:hello@cateai.ie" style="color:#C4913A;">hello@cateai.ie</a>.</p>
+
+      <h3 style="color:#3D1F6E; font-size:1.1rem; margin-bottom:0.75rem;">Data retention</h3>
+      <p style="color:#718096; font-size:0.9rem; line-height:1.8; margin-bottom:1.5rem;">Raw client HR data is deleted within 7 days of dashboard delivery. Contact enquiry data is retained for the duration of our business relationship plus 2 years.</p>
+
+      <h3 style="color:#3D1F6E; font-size:1.1rem; margin-bottom:0.75rem;">Questions</h3>
+      <p style="color:#718096; font-size:0.9rem; line-height:1.8;">For any privacy-related questions, contact us at <a href="mailto:hello@cateai.ie" style="color:#C4913A;">hello@cateai.ie</a>. If you are unhappy with how we handle your data, you may contact the Data Protection Commission at <a href="https://www.dataprotection.ie" style="color:#C4913A;">dataprotection.ie</a>.</p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-inner">
     <a href="#" class="footer-logo">
@@ -3066,8 +3097,9 @@
     <span class="footer-copy">© 2026 CateAI Culture Pulse™ · CateAI People Hub™ · CateAI Skills™ · hello@cateai.ie · cateai.ie</span>
     <ul class="footer-links">
       <li><a href="mailto:hello@cateai.ie">Contact</a></li>
-      <li><a href="#">Privacy</a></li>
-      <li><a href="#">GDPR</a></li>
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#privacy">Cookie Policy</a></li>
+      <li><a href="#privacy">GDPR</a></li>
     </ul>
   </div>
 </footer>
