@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="google-site-verification" content="YYlY1YqxXNvCFsX-MJPUrbvu-SNVeLAUgU5I1x-pU8Y" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CateAI — Intelligent Tools for a Better Workplace</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{font-family:'Poppins',sans-serif;color:#2D3748;background:#fff;overflow-x:hidden;}
+:root{
+  --pu:#3D1F6E;--pu2:#5A3490;--pu3:#7B52B4;
+  --go:#C4913A;--gl:#E8B86D;
+  --wh:#fff;--bg:#FAFAFA;--bg2:#F5F0FF;
+  --sm:#718096;--sl:#2D3748;--sb:#E2E8F0;
+}
+
+/* ── NAV ─────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--pu);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:64px;box-shadow:0 2px 20px rgba(0,0,0,0.2);}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.logo-diamond{width:20px;height:20px;background:var(--go);transform:rotate(45deg);flex-shrink:0;}
+.logo-text{font-size:1.15rem;font-weight:700;color:#fff;letter-spacing:0.3px;}
+.logo-text span{color:var(--gl);}
+.nav-links{display:flex;align-items:center;gap:0.25rem;list-style:none;}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:0.82rem;font-weight:500;padding:6px 10px;border-radius:6px;transition:color 0.2s;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{background:var(--go)!important;color:#1a0a38!important;font-weight:700!important;padding:8px 18px!important;border-radius:8px!important;}
+
+/* ── HERO ────────────────────────────── */
+.hero{padding:100px 4% 60px;background:linear-gradient(135deg,#1a0a38 0%,var(--pu) 60%,#2a1250 100%);min-height:100vh;display:flex;align-items:center;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.8fr;gap:3rem;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(196,145,58,0.2);border:1px solid rgba(232,184,109,0.4);color:var(--gl);font-size:0.75rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:1.5rem;}
+.badge-dot{width:8px;height:8px;background:var(--go);border-radius:50%;}
+.hero h1{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:1.25rem;}
+.hero h1 em{color:var(--gl);font-style:normal;display:block;}
+.hero-sub{color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.8;margin-bottom:2rem;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{background:var(--go);color:#1a0a38;padding:14px 28px;border-radius:10px;font-weight:700;font-size:0.95rem;text-decoration:none;display:inline-block;}
+.btn-secondary{background:transparent;color:#fff;padding:14px 28px;border-radius:10px;font-weight:600;font-size:0.95rem;text-decoration:none;border:1px solid rgba(255,255,255,0.4);display:inline-block;}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1);}
+.stat-value{font-size:1.6rem;font-weight:800;color:var(--go);display:block;}
+.stat-label{font-size:0.72rem;color:rgba(255,255,255,0.55);font-weight:400;line-height:1.4;}
+.dashboard-card{background:rgba(10,5,30,0.55);border:1px solid rgba(196,145,58,0.5);border-radius:16px;padding:1.5rem;backdrop-filter:blur(10px);position:relative;overflow:hidden;}
+.dashboard-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--go),transparent);}
+.card-title{font-size:0.75rem;font-weight:600;color:rgba(255,255,255,0.6);margin-bottom:1rem;}
+.card-tab{display:inline-block;background:var(--go);color:#1a0a38;font-size:0.65rem;font-weight:700;padding:4px 10px;border-radius:5px;margin-right:4px;margin-bottom:8px;}
+.card-tab-inactive{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.6);}
+.culture-score{font-size:2.5rem;font-weight:800;color:#EF9F27;margin:0.5rem 0 0.25rem;}
+.score-label{font-size:0.7rem;color:rgba(255,255,255,0.5);}
+.signal-bar{margin-bottom:0.5rem;}
+.signal-name{font-size:0.65rem;color:rgba(255,255,255,0.65);margin-bottom:3px;}
+.signal-track{height:6px;background:rgba(255,255,255,0.1);border-radius:3px;overflow:hidden;}
+.signal-fill{height:100%;border-radius:3px;}
+.flag-item{font-size:0.65rem;padding:4px 8px;border-radius:5px;margin-bottom:4px;display:flex;align-items:center;gap:6px;}
+
+/* ── SECTIONS ────────────────────────── */
+section{padding:80px 5%;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--go);margin-bottom:0.5rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--pu);margin-bottom:1rem;}
+.section-sub{color:var(--sm);font-size:0.95rem;line-height:1.8;max-width:680px;margin-bottom:2.5rem;}
+.gold-rule{width:48px;height:3px;background:var(--go);border-radius:2px;margin-bottom:1.5rem;}
+
+/* ── ABOUT ────────────────────────────── */
+.origin{background:#EDE8FA;}
+.origin-inner{display:flex;gap:4rem;align-items:flex-start;max-width:1100px;margin:0 auto;}
+.origin-visual{flex:0 0 380px;min-width:300px;}
+.portrait-frame{background:#ffffff !important;border-radius:20px;padding:2rem;border:1px solid rgba(61,31,110,0.12);box-shadow:0 12px 48px rgba(61,31,110,0.12);}
+.origin-text{flex:1;}
+.origin-text p{color:var(--sm);font-size:0.95rem;line-height:1.85;margin-bottom:1.25rem;}
+.origin-text strong{color:var(--pu);}
+.sig-avatar{width:44px;height:44px;background:var(--go);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#1a0a38;font-weight:700;font-size:0.9rem;flex-shrink:0;}
+.signature{display:flex;align-items:center;gap:12px;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--sb);}
+.sig-name{font-weight:700;font-size:0.9rem;color:var(--pu);}
+.sig-title{font-size:0.75rem;color:var(--sm);}
+
+/* ── ENGINE ────────────────────────────── */
+.engine-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem;}
+.engine-step{text-align:center;padding:1.5rem 1rem;}
+.engine-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.5rem;}
+.engine-step-num{font-size:0.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--go);margin-bottom:0.5rem;}
+.engine-step h3{font-size:0.95rem;font-weight:700;color:var(--pu);margin-bottom:0.5rem;}
+.engine-step p{font-size:0.8rem;color:var(--sm);line-height:1.6;}
+
+/* ── PRODUCTS ─────────────────────────── */
+.products{background:var(--bg);}
+.products-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem;}
+.product-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--sb);transition:transform 0.2s,box-shadow 0.2s;}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(61,31,110,0.12);}
+.product-head{padding:1.75rem;background:var(--pu);}
+.product-head.gold{background:var(--go);}
+.product-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+.product-head h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.5rem;}
+.product-head p{font-size:0.82rem;color:rgba(255,255,255,0.8);line-height:1.6;}
+.product-body{padding:1.5rem;}
+.product-feature{display:flex;gap:10px;margin-bottom:8px;font-size:0.82rem;color:var(--sl);line-height:1.5;}
+.product-feature::before{content:'✓';color:var(--go);font-weight:700;flex-shrink:0;}
+
+/* ── TESTIMONIALS ─────────────────────── */
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;}
+.testi-card{background:var(--bg2);border-radius:16px;padding:1.75rem;border:1px solid rgba(61,31,110,0.1);}
+.testi-star{color:var(--go);font-size:0.8rem;margin-bottom:0.75rem;}
+.quote-mark{font-size:3rem;color:var(--go);font-family:'Playfair Display',serif;line-height:1;margin-bottom:0.25rem;}
+.testi-text{color:var(--sl);font-size:0.88rem;line-height:1.75;margin-bottom:1.25rem;}
+.testi-person{display:flex;align-items:center;gap:12px;padding-top:1rem;border-top:1px solid var(--sb);}
+.testi-avatar{width:40px;height:40px;border-radius:50%;background:var(--pu);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;}
+.avatar-a{background:var(--pu);}
+.avatar-b{background:var(--go);}
+.avatar-c{background:var(--pu3);}
+.testi-name{font-weight:700;font-size:0.85rem;color:var(--pu);}
+.testi-org{font-size:0.72rem;color:var(--sm);}
+.testi-tag{display:inline-block;background:rgba(61,31,110,0.1);color:var(--pu2);font-size:0.65rem;font-weight:600;padding:2px 8px;border-radius:4px;margin-top:4px;}
+
+/* ── WHY ──────────────────────────────── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem;}
+.why-card{background:var(--bg);border-radius:14px;padding:1.5rem;border:1px solid var(--sb);}
+.why-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:1.3rem;}
+.why-card h3{font-size:0.95rem;font-weight:700;color:var(--pu);margin-bottom:0.5rem;}
+.why-card p{font-size:0.82rem;color:var(--sm);line-height:1.65;}
+
+/* ── SECTORS ──────────────────────────── */
+.sectors{background:var(--pu);}
+.sectors .section-label{color:var(--gl);}
+.sectors .section-title{color:#fff;}
+.sectors-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;margin-top:2rem;}
+.sector-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:1.25rem;text-align:center;transition:background 0.2s;}
+.sector-card:hover{background:rgba(255,255,255,0.14);}
+.sector-icon{font-size:1.8rem;display:block;margin-bottom:0.5rem;}
+.sector-name{color:#fff;font-size:0.82rem;font-weight:600;margin-bottom:0.25rem;}
+.sector-count{color:rgba(255,255,255,0.55);font-size:0.68rem;}
+.audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;}
+.audience-card{border-radius:16px;padding:2rem;}
+.audience-card.ceo{background:rgba(255,255,255,0.08);border:1px solid rgba(232,184,109,0.3);}
+.audience-card.hr{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);}
+.audience-label{font-size:0.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gl);margin-bottom:0.75rem;}
+.audience-title{color:#fff;font-size:1rem;font-weight:700;margin-bottom:1.25rem;}
+.audience-feature{display:flex;gap:0.75rem;align-items:flex-start;margin-bottom:0.9rem;}
+.audience-feature-icon{color:var(--go);flex-shrink:0;}
+.audience-feature-title{color:#fff;font-size:0.82rem;font-weight:600;margin-bottom:0.2rem;}
+.audience-feature-desc{color:rgba(255,255,255,0.65);font-size:0.75rem;line-height:1.6;}
+
+/* ── SKILLS ───────────────────────────── */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem;}
+.skill-card{background:var(--bg2);border-radius:14px;padding:1.5rem;border:1px solid rgba(61,31,110,0.1);}
+.skill-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+.skill-card h3{font-size:0.9rem;font-weight:700;color:var(--pu);margin-bottom:0.4rem;}
+.skill-card p{font-size:0.8rem;color:var(--sm);line-height:1.6;}
+
+/* ── PRICING ──────────────────────────── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem;}
+.pricing-card{background:#fff;border-radius:16px;padding:2rem;border:2px solid var(--sb);position:relative;}
+.pricing-card-featured{background:var(--pu);border-color:var(--pu);}
+.pricing-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--go);color:#1a0a38;font-size:0.7rem;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap;}
+.pricing-name{font-size:1rem;font-weight:700;color:var(--pu);margin-bottom:0.5rem;}
+.pricing-card-featured .pricing-name{color:#fff;}
+.pricing-desc{font-size:0.78rem;color:var(--sm);line-height:1.6;margin-bottom:0.75rem;}
+.pricing-card-featured .pricing-desc{color:rgba(255,255,255,0.7);}
+.pricing-audience{font-size:0.68rem;font-weight:600;color:var(--pu3);margin-bottom:1.25rem;text-transform:uppercase;letter-spacing:0.5px;}
+.pricing-card-featured .pricing-audience{color:var(--gl);}
+.price-amount{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--pu);}
+.pricing-card-featured .price-amount{color:#fff;}
+.price-amount span{font-size:1rem;font-weight:400;}
+.price-range{font-size:0.75rem;color:var(--sm);margin-bottom:1.5rem;}
+.pricing-card-featured .price-range{color:rgba(255,255,255,0.5);}
+.pricing-includes{list-style:none;margin-bottom:1.5rem;}
+.pricing-includes li{display:flex;align-items:flex-start;gap:8px;font-size:0.82rem;color:var(--sl);margin-bottom:8px;}
+.pricing-card-featured .pricing-includes li{color:rgba(255,255,255,0.85);}
+.check{color:#1D9E75;font-weight:700;flex-shrink:0;}
+.btn-pricing{display:block;text-align:center;padding:12px;border-radius:10px;font-weight:700;font-size:0.88rem;text-decoration:none;background:var(--bg2);color:var(--pu);border:1px solid var(--sb);}
+.btn-pricing-gold{background:var(--go);color:#1a0a38;border-color:var(--go);}
+
+/* ── TRUST ────────────────────────────── */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-top:2rem;}
+.trust-card{background:#fff;border-radius:14px;padding:1.5rem;text-align:center;border:1px solid rgba(61,31,110,0.1);}
+.trust-icon{font-size:2rem;margin-bottom:0.75rem;}
+.trust-card h3{font-size:0.85rem;font-weight:700;color:var(--pu);margin-bottom:0.4rem;}
+.trust-card p{font-size:0.75rem;color:var(--sm);line-height:1.6;}
+
+/* ── FOOTER ───────────────────────────── */
+footer{background:var(--pu);padding:50px 5% 20px;}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:2rem;}
+.footer-logo{display:flex;align-items:center;gap:8px;margin-bottom:0.75rem;}
+.footer-logo .logo-diamond{width:18px;height:18px;}
+.footer-logo span{font-size:1.1rem;font-weight:700;color:#fff;}
+.footer-logo em{color:var(--gl);font-style:normal;}
+.footer-tagline{color:rgba(255,255,255,0.6);font-size:0.82rem;margin-bottom:0.5rem;}
+.footer-email{color:var(--gl);font-size:0.85rem;text-decoration:none;}
+.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.footer-col-title{color:rgba(255,255,255,0.5);font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.75rem;}
+.footer-col a{display:block;color:rgba(255,255,255,0.75);font-size:0.82rem;text-decoration:none;margin-bottom:0.5rem;}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:1.25rem;max-width:1100px;margin:0 auto;}
+.footer-bottom p{color:rgba(255,255,255,0.4);font-size:0.75rem;text-align:center;}
+
+/* ── RESPONSIVE ───────────────────────── */
+@media(max-width:900px){
+  .hero-inner,.products-grid,.testi-grid,.audience-grid,.footer-inner{grid-template-columns:1fr;} .origin-inner{flex-direction:column;}
+  .hero-right{display:none;}
+  .engine-grid,.why-grid,.sectors-grid,.skills-grid{grid-template-columns:repeat(2,1fr);}
+  .pricing-grid,.trust-grid{grid-template-columns:1fr;}
+  .nav-links li:not(:last-child):not(:nth-last-child(2)){display:none;}
+  section{padding:60px 5%;}
+}
+@media(max-width:600px){
+  .hero h1{font-size:2rem;}
+  .engine-grid,.why-grid,.sectors-grid,.skills-grid{grid-template-columns:1fr;}
+  .nav-links li:not(:last-child){display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-diamond"></div>
+    <div class="logo-text">Cate<span>AI</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#sectors">Who We Serve</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="http://hub.cateai.ie" target="_blank">People Hub™</a></li>
+    <li><a href="mailto:hello@cateai.ie" class="nav-cta">Book a Demo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge"><div class="badge-dot"></div>CateAI Culture Pulse™</div>
+      <h1>Executive People<br/>Oversight. <em>AI-Powered.</em><br/><em>No Software Required.</em></h1>
+      <p class="hero-sub">From raw HR data to a narrated executive dashboard — delivered to your leadership team every month. Zero IT setup. No new software.</p>
+      <div class="hero-ctas">
+        <a href="mailto:hello@cateai.ie" class="btn-primary">Book a 15-Minute Demo →</a>
+        <a href="#products" class="btn-secondary">See the Products</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-value">9</span><span class="stat-label">Dashboard tabs</span></div>
+        <div class="stat"><span class="stat-value">48hrs</span><span class="stat-label">Typical onboarding</span></div>
+        <div class="stat"><span class="stat-value">22+</span><span class="stat-label">Hub features</span></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Browser screen mockup -->
+      <div style="background:#f0f0f5;border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.45),0 0 0 1px rgba(255,255,255,0.2);transform:scale(0.92);transform-origin:top right;">
+
+        <!-- Browser chrome bar -->
+        <div style="background:#e4e4ec;padding:10px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(0,0,0,0.08);">
+          <div style="display:flex;gap:6px;">
+            <div style="width:11px;height:11px;border-radius:50%;background:#FF5F57;"></div>
+            <div style="width:11px;height:11px;border-radius:50%;background:#FEBC2E;"></div>
+            <div style="width:11px;height:11px;border-radius:50%;background:#28C840;"></div>
+          </div>
+          <div style="flex:1;background:#fff;border-radius:5px;padding:4px 10px;font-size:0.65rem;color:#666;font-family:monospace;border:1px solid rgba(0,0,0,0.1);">dashboard.meridiangroup.cateai.ie</div>
+          <div style="font-size:0.65rem;color:#888;">🔒</div>
+        </div>
+
+        <!-- Dashboard nav bar -->
+        <div style="background:#3D1F6E;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.08);">
+          <div style="display:flex;align-items:center;gap:6px;">
+            <div style="width:12px;height:12px;background:#C4913A;transform:rotate(45deg);"></div>
+            <span style="font-size:0.72rem;font-weight:700;color:#fff;">Cate<span style="color:#E8B86D;">AI</span></span>
+            <span style="font-size:0.62rem;color:rgba(255,255,255,0.4);margin-left:4px;">Culture Pulse™</span>
+          </div>
+          <div style="font-size:0.62rem;color:rgba(255,255,255,0.5);">Meridian Group · May 2026</div>
+        </div>
+
+        <!-- Tab bar -->
+        <div style="background:#2a1250;padding:0 14px;display:flex;gap:2px;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="background:#C4913A;color:#1a0a38;font-size:0.6rem;font-weight:700;padding:6px 10px;border-radius:4px 4px 0 0;margin-bottom:0;">Culture Temp</div>
+          <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;padding:6px 10px;">Absence</div>
+          <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;padding:6px 10px;">Hours</div>
+          <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;padding:6px 10px;">Reviews</div>
+          <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;padding:6px 10px;">Training</div>
+          <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;padding:6px 10px;">Actions</div>
+        </div>
+
+        <!-- Dashboard content -->
+        <div style="background:#ffffff;padding:14px;">
+          <!-- Score + signals row -->
+          <div style="display:flex;gap:12px;margin-bottom:12px;">
+
+            <!-- Culture score card -->
+            <div style="background:#FFF8EC;border:1px solid rgba(239,159,39,0.4);border-radius:10px;padding:12px;text-align:center;min-width:90px;">
+              <div style="font-size:0.55rem;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Culture Score</div>
+              <div style="font-size:2rem;font-weight:800;color:#EF9F27;line-height:1;">6.6</div>
+              <div style="font-size:0.55rem;color:#999;">/10 · Amber</div>
+              <div style="margin-top:8px;display:inline-block;background:rgba(239,159,39,0.2);border:1px solid rgba(239,159,39,0.4);color:#f5c76e;font-size:0.5rem;padding:2px 7px;border-radius:4px;">▲ +0.4 vs last month</div>
+            </div>
+
+            <!-- Signals -->
+            <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+              <div style="background:#f5f5fa;border-radius:8px;padding:8px 10px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:0.58rem;color:#555;">Absence & Leave</span>
+                  <span style="font-size:0.55rem;color:#1D9E75;font-weight:700;">✓ On track</span>
+                </div>
+                <div style="height:5px;background:#e0e0ea;border-radius:3px;overflow:hidden;"><div style="width:82%;height:100%;background:#1D9E75;border-radius:3px;"></div></div>
+              </div>
+              <div style="background:#f5f5fa;border-radius:8px;padding:8px 10px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:0.58rem;color:#555;">Hours & Clocking</span>
+                  <span style="font-size:0.55rem;color:#EF9F27;font-weight:700;">▲ Above target</span>
+                </div>
+                <div style="height:5px;background:#e0e0ea;border-radius:3px;overflow:hidden;"><div style="width:65%;height:100%;background:#EF9F27;border-radius:3px;"></div></div>
+              </div>
+              <div style="background:#f5f5fa;border-radius:8px;padding:8px 10px;">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                  <span style="font-size:0.58rem;color:#555;">Reviews & Training</span>
+                  <span style="font-size:0.55rem;color:#E24B4A;font-weight:700;">● Needs attention</span>
+                </div>
+                <div style="height:5px;background:#e0e0ea;border-radius:3px;overflow:hidden;"><div style="width:40%;height:100%;background:#E24B4A;border-radius:3px;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Department bars -->
+          <div style="background:#f5f5fa;border-radius:8px;padding:10px;margin-bottom:10px;">
+            <div style="font-size:0.55rem;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Absence Rate by Department</div>
+            <div style="display:flex;flex-direction:column;gap:5px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:0.58rem;color:#555;width:70px;">Operations</span>
+                <div style="flex:1;height:5px;background:#e0e0ea;border-radius:3px;overflow:hidden;"><div style="width:72%;height:100%;background:#EF9F27;border-radius:3px;"></div></div>
+                <span style="font-size:0.55rem;color:#999;">5.1%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:0.58rem;color:#555;width:70px;">Finance</span>
+                <div style="flex:1;height:5px;background:#e0e0ea;border-radius:3px;overflow:hidden;"><div style="width:42%;height:100%;background:#1D9E75;border-radius:3px;"></div></div>
+                <span style="font-size:0.55rem;color:#999;">2.2%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <span style="font-size:0.58rem;color:#555;width:70px;">People</span>
+                <div style="flex:1;height:5px;background:#e0e0ea;border-radius:3px;overflow:hidden;"><div style="width:55%;height:100%;background:#1D9E75;border-radius:3px;"></div></div>
+                <span style="font-size:0.55rem;color:#999;">3.3%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Flags -->
+          <div style="font-size:0.55rem;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Key Flags This Month</div>
+          <div style="display:flex;flex-direction:column;gap:4px;">
+            <div style="background:rgba(226,75,74,0.15);border-left:2px solid #E24B4A;border-radius:0 6px 6px 0;padding:5px 8px;font-size:0.6rem;color:#ff8a89;">● Operations hours 18.5h over contracted</div>
+            <div style="background:rgba(239,159,39,0.15);border-left:2px solid #EF9F27;border-radius:0 6px 6px 0;padding:5px 8px;font-size:0.6rem;color:#f5c76e;">● Finance burnout risk — 3 months elevated</div>
+            <div style="background:rgba(29,158,117,0.15);border-left:2px solid #1D9E75;border-radius:0 6px 6px 0;padding:5px 8px;font-size:0.6rem;color:#5de0b6;">● EAP launched — 18 staff accessed this month</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="origin" id="about">
+  <div class="origin-inner">
+    <div class="origin-visual">
+      <div style="background:#ffffff;border-radius:20px;padding:2rem;border:1px solid #DDD5F0;box-shadow:0 16px 56px rgba(61,31,110,0.14);position:relative;overflow:hidden;">
+
+        <!-- Top gold accent line -->
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#C4913A,#E8B86D,#C4913A);"></div>
+
+        <!-- Header -->
+        <div style="text-align:center;padding-top:0.5rem;margin-bottom:1.75rem;">
+          <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:0.5rem;">
+            <div style="width:16px;height:16px;background:#C4913A;transform:rotate(45deg);flex-shrink:0;"></div>
+            <span style="font-size:1.05rem;font-weight:700;color:#3D1F6E;">Cate<span style="color:#C4913A;">AI</span></span>
+          </div>
+          <div style="font-size:0.62rem;color:#9B8CC0;letter-spacing:2px;text-transform:uppercase;font-weight:600;">The Expertise Behind the Service</div>
+          <div style="width:36px;height:2px;background:linear-gradient(90deg,#C4913A,transparent);margin:0.6rem auto 0;"></div>
+        </div>
+
+        <!-- Qualification box -->
+        <div style="background:#F5F0FF;border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:1rem;border-left:3px solid #C4913A;">
+          <div style="font-size:0.62rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#C4913A;margin-bottom:0.5rem;">Qualification & Experience</div>
+          <p style="color:#3D1F6E;font-size:0.83rem;line-height:1.75;font-weight:500;margin:0;">Qualified HR Professional with over 20 years experience working across private, public and not-for-profit sectors.</p>
+        </div>
+
+        <!-- Feature rows -->
+        <div style="display:flex;flex-direction:column;gap:0.6rem;">
+
+          <div style="display:flex;align-items:center;gap:0.85rem;background:#F9F6FF;border-radius:10px;padding:0.85rem 1rem;border:1px solid #E8E0F5;">
+            <div style="width:36px;height:36px;background:linear-gradient(135deg,#3D1F6E,#5A3490);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">🤖</div>
+            <div>
+              <div style="color:#3D1F6E;font-size:0.82rem;font-weight:700;margin-bottom:2px;">AI-Powered Delivery</div>
+              <div style="color:#718096;font-size:0.7rem;line-height:1.4;">Expert interpretation, not just automation</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:0.85rem;background:#FDF8F0;border-radius:10px;padding:0.85rem 1rem;border:1px solid #F0E4C8;">
+            <div style="width:36px;height:36px;background:linear-gradient(135deg,#C4913A,#B8813A);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">💼</div>
+            <div>
+              <div style="color:#B8713A;font-size:0.82rem;font-weight:700;margin-bottom:2px;">Founder-Led Service</div>
+              <div style="color:#718096;font-size:0.7rem;line-height:1.4;">You work directly with me — not an account team</div>
+            </div>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:0.85rem;background:#F0FBF7;border-radius:10px;padding:0.85rem 1rem;border:1px solid #C8EBE0;">
+            <div style="width:36px;height:36px;background:linear-gradient(135deg,#1D9E75,#157A5A);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">🇮🇪</div>
+            <div>
+              <div style="color:#157A5A;font-size:0.82rem;font-weight:700;margin-bottom:2px;">Irish Owned & Operated</div>
+              <div style="color:#718096;font-size:0.7rem;line-height:1.4;">Serving UK & Ireland · GDPR compliant</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    </div>
+    <div class="origin-text">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Professional Judgement<br/>Meets AI Speed.</h2>
+      <div class="gold-rule"></div>
+      <p class="lead" style="font-size:1.05rem;font-weight:500;color:var(--pu);margin-bottom:1.25rem;">CateAI was founded to solve a specific problem — small and mid-sized organisations were flying blind because enterprise tools were too complex and too expensive.</p>
+      <p><strong>The Innovation.</strong> We use advanced AI to find the patterns in your people data — and professional judgement to find the story. That combination is what separates a CateAI dashboard from a spreadsheet report.</p>
+      <p><strong>The Hybrid Approach.</strong> People data is only useful when professional judgement sits behind it. Our AI identifies the signals. Our People &amp; Culture expertise interprets them. You get clarity — not just numbers.</p>
+      <p><strong>Our Mission.</strong> To give every CEO and HR Manager a digital analyst that delivers clarity on demand — regardless of what internal systems they use. <strong>No new software. No IT project. Just your data, transformed.</strong></p>
+      <div class="signature">
+        <div class="sig-avatar">SR</div>
+        <div>
+          <div class="sig-name">Siobhan Reid</div>
+          <div class="sig-title">Founder · CateAI Culture Pulse™ &amp; CateAI People Hub™ · hello@cateai.ie</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINE -->
+<section style="background:#fff;">
+  <div class="section-inner">
+    <div style="text-align:center;max-width:600px;margin:0 auto 1rem;">
+      <div class="section-label" style="text-align:center;">How It Works</div>
+      <h2 class="section-title" style="text-align:center;">The CateAI Culture Pulse™ Process</h2>
+      <p class="section-sub" style="text-align:center;margin:0 auto;">Four steps from raw data to executive insight.</p>
+    </div>
+    <div class="engine-grid">
+      <div class="engine-step">
+        <div class="engine-icon" style="background:linear-gradient(135deg,var(--pu),var(--pu2));">📤</div>
+        <div class="engine-step-num">Step 1</div>
+        <h3>Secure Data Transfer</h3>
+        <p>You send your data using our simple CateAI Data Template. Whether you use a modern HR system or basic spreadsheets — we handle it.</p>
+      </div>
+      <div class="engine-step">
+        <div class="engine-icon" style="background:linear-gradient(135deg,var(--pu),var(--pu2));">🤖</div>
+        <div class="engine-step-num">Step 2</div>
+        <h3>AI Processing</h3>
+        <p>Our AI-powered process identifies patterns in absence, hours, and culture health that manual reporting consistently misses.</p>
+      </div>
+      <div class="engine-step">
+        <div class="engine-icon" style="background:linear-gradient(135deg,var(--pu),var(--pu2));">✍️</div>
+        <div class="engine-step-num">Step 3</div>
+        <h3>Professional Narrative</h3>
+        <p>Every AI-generated report is reviewed and narrated by a qualified People &amp; Culture professional to ensure actionable, accurate insight.</p>
+      </div>
+      <div class="engine-step">
+        <div class="engine-icon" style="background:linear-gradient(135deg,var(--go),#B8813A);">📊</div>
+        <div class="engine-step-num">Step 4</div>
+        <h3>Live Dashboard</h3>
+        <p>Your dashboard updates at your private, secure URL — giving your leadership team the "so what?" behind the numbers, every month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" class="products">
+  <div class="section-inner">
+    <div class="section-label">The Product Suite</div>
+    <h2 class="section-title">Two connected products.<br/>One complete service.</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-head">
+          <div class="product-icon">📊</div>
+          <h3>CateAI Culture Pulse™ Dashboard</h3>
+          <p>A boardroom-ready monthly analytics report covering every dimension of your people data — RAG-rated, narrative-driven, delivered to your leadership team's private URL.</p>
+        </div>
+        <div class="product-body">
+          <div class="product-feature">9-tab interactive dashboard covering culture, absence, hours, reviews, training and actions</div>
+          <div class="product-feature">RAG-rated culture health score with department heatmap</div>
+          <div class="product-feature">Expert narrative — written by a qualified HR professional</div>
+          <div class="product-feature">Monthly actions tab with named owners</div>
+          <div class="product-feature">Private, secure URL for your leadership team</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-head gold">
+          <div class="product-icon">👥</div>
+          <h3>CateAI People Hub™</h3>
+          <p>A complete branded staff engagement portal — every employee has one place for benefits, policies, onboarding, wellbeing, recognition and a direct line to People &amp; Culture.</p>
+        </div>
+        <div class="product-body">
+          <div class="product-feature">Benefits portal — your organisation's own benefits, configured and maintained by you</div>
+          <div class="product-feature">Policy library — upload your own policies, handbooks and key documents</div>
+          <div class="product-feature">Monthly pulse survey feeding directly into the executive dashboard</div>
+          <div class="product-feature">P&amp;C AI assistant — staff ask questions, get instant answers from your content</div>
+          <div class="product-feature">Manager Hub — a dedicated space for manager resources and team information</div>
+        </div>
+      </div>
+    </div>
+    <!-- People Hub Demo Banner -->
+    <div style="margin-top:2rem;background:linear-gradient(135deg,var(--pu),var(--pu2));border-radius:16px;padding:2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <div style="color:var(--gl);font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.5rem;">◆ Live Demo Available</div>
+        <h3 style="color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">See the CateAI People Hub™ in action.</h3>
+        <p style="color:rgba(255,255,255,0.75);font-size:0.85rem;max-width:500px;">This is what your staff portal would look like — fully branded and populated with your organisation's own benefits, policies and content. View the live demo using fictional Meridian Group data.</p>
+      </div>
+      <a href="http://hub.cateai.ie" target="_blank" style="background:var(--go);color:#1a0a38;padding:14px 28px;border-radius:10px;font-weight:700;font-size:0.9rem;text-decoration:none;white-space:nowrap;">View Live Demo →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" style="background:var(--bg);">
+  <div class="section-inner">
+    <div class="section-label">Client Stories</div>
+    <h2 class="section-title">Hear from the people who use it.</h2>
+    <p class="section-sub">People &amp; Culture professionals and leaders who now walk into their meetings with data that actually means something.</p>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="testi-star">★ ★ ★ ★ ★</div>
+        <p class="testi-text">Before CateAI, I spent two days every month pulling figures together manually. Now I get a polished dashboard delivered to my inbox every month. It has completely changed how I present people data to our leadership team.</p>
+        <div class="testi-person">
+          <div class="testi-avatar avatar-b">AK</div>
+          <div><div class="testi-name">Anna Kowalski</div><div class="testi-org">HR Manager · SME Client</div><span class="testi-tag">Culture Pulse™</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="testi-star">★ ★ ★ ★ ★</div>
+        <p class="testi-text">Our board finally has real visibility of our people data. The dashboard is clear, the narrative is clear and credible, and the pulse survey tells us how staff are really feeling. I cannot imagine going back.</p>
+        <div class="testi-person">
+          <div class="testi-avatar avatar-a">SC</div>
+          <div><div class="testi-name">Susan Comiskey</div><div class="testi-org">Director of People &amp; Culture · NFP Client</div><span class="testi-tag">Full Suite</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="testi-star">★ ★ ★ ★ ★</div>
+        <p class="testi-text">The People Hub alone has been worth it. Staff can find benefits, policies and HR contacts in one place. The repetitive questions I used to answer every day have almost disappeared.</p>
+        <div class="testi-person">
+          <div class="testi-avatar avatar-c">PS</div>
+          <div><div class="testi-name">Priya Sharma</div><div class="testi-org">HR Business Partner · Client</div><span class="testi-tag">People Hub™</span></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="testi-star">★ ★ ★ ★ ★</div>
+        <p class="testi-text">I finally have something worth presenting at our monthly leadership meeting. Nine tabs of data that tells us what is actually happening with our people — and what we need to do about it.</p>
+        <div class="testi-person">
+          <div class="testi-avatar avatar-b">PC</div>
+          <div><div class="testi-name">Paul Courtney</div><div class="testi-org">CEO · Client</div><span class="testi-tag">Full Suite</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CATEAI -->
+<section class="why" style="background:#fff;">
+  <div class="section-inner">
+    <div class="section-label">Why CateAI</div>
+    <h2 class="section-title">What makes this different.</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon" style="background:var(--bg2);">🧠</div>
+        <h3>Expert Interpretation</h3>
+        <p>Every dashboard is reviewed and narrated by a qualified HR professional. You get clear, actionable insight — not just numbers. The expert judgement behind the data is what makes CateAI different.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:var(--bg2);">🚀</div>
+        <h3>Zero IT Overhead</h3>
+        <p>No software to install. No IT sign-off required. No procurement wall to navigate. Most clients are live within 48 hours of their first data send.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:#E1F5EE;">💰</div>
+        <h3>SME Price Point</h3>
+        <p>Enterprise people analytics platforms cost €6,000–€15,000 per year. CateAI delivers the same quality of insight — expert-interpreted and board-ready — at a price that works for organisations with 30 to 200 people.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:var(--bg2);">🔧</div>
+        <h3>Works With Any System</h3>
+        <p>CSV or Excel exports from HR Locker, BambooHR, Sage or any other system. No integration required. If you can export it, we can analyse it.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:var(--bg2);">🎯</div>
+        <h3>Bespoke Every Month</h3>
+        <p>Every dashboard and Hub is configured to your departments, metrics and board priorities. Nothing generic. Nothing off-the-shelf.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon" style="background:#E1F5EE;">🔒</div>
+        <h3>Secure by Design</h3>
+        <p>Each client has a dedicated, isolated environment. Raw data is deleted within 7 days of delivery. Signed DPA before any data is shared.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg2);">
+  <div class="section-inner">
+    <div class="section-label">CateAI Skills</div>
+    <h2 class="section-title">When the dashboard reveals a gap — we help you close it.</h2>
+    <p class="section-sub">When the dashboard shows burnout in Finance, low engagement in Operations, or training falling behind — CateAI Skills gives you the tools to act on it immediately.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">📋</div>
+        <h3>People & Culture Strategy</h3>
+        <p>Bespoke P&amp;C strategy design, annual workplan development, and board-level people reporting.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <h3>Custom Analytics Projects</h3>
+        <p>Deep-dive analysis beyond the monthly dashboard — workforce modelling, pay equity review, turnover analysis.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎓</div>
+        <h3>Training & Development Design</h3>
+        <p>Manager capability programmes, compliance training, and bespoke learning content for your team.</p>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--sm);">All Skills projects are quoted individually. <a href="mailto:hello@cateai.ie" style="color:var(--go);font-weight:600;">Get in touch →</a></p>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section id="sectors" class="sectors">
+  <div class="section-inner">
+    <div class="section-label">Who We Serve</div>
+    <h2 class="section-title" style="color:#fff;">Built for organisations<br/>with 30 to 200 people.</h2>
+    <div class="audience-grid">
+      <div class="audience-card ceo">
+        <div class="audience-label">For the CEO</div>
+        <div class="audience-title">No HR Manager? No Problem.</div>
+        <div class="audience-feature"><span class="audience-feature-icon">✦</span><div><div class="audience-feature-title">Instant Oversight</div><div class="audience-feature-desc">A RAG-rated view of absence, culture and compliance — without asking for a single report.</div></div></div>
+        <div class="audience-feature"><span class="audience-feature-icon">✦</span><div><div class="audience-feature-title">No HRIS Needed</div><div class="audience-feature-desc">We turn manual logs and Excel sheets into a professional digital reporting system.</div></div></div>
+        <div class="audience-feature"><span class="audience-feature-icon">✦</span><div><div class="audience-feature-title">Risk Mitigation</div><div class="audience-feature-desc">Spot burnout and compliance gaps before they become liabilities.</div></div></div>
+      </div>
+      <div class="audience-card hr">
+        <div class="audience-label" style="color:rgba(255,255,255,0.6);">For the HR Manager or Director</div>
+        <div class="audience-title">Your monthly reporting. Done.</div>
+        <div class="audience-feature"><span class="audience-feature-icon">✦</span><div><div class="audience-feature-title">Leadership-Ready Reporting</div><div class="audience-feature-desc">Walk into meetings with professional, data-driven insights already prepared.</div></div></div>
+        <div class="audience-feature"><span class="audience-feature-icon">✦</span><div><div class="audience-feature-title">Recover Your Time</div><div class="audience-feature-desc">Eliminate hours spent manually compiling data from multiple systems every month.</div></div></div>
+        <div class="audience-feature"><span class="audience-feature-icon">✦</span><div><div class="audience-feature-title">Close the Loop</div><div class="audience-feature-desc">Staff pulse survey results feed directly into your monthly executive dashboard.</div></div></div>
+      </div>
+    </div>
+    <div class="sectors-grid" style="margin-top:2.5rem;">
+      <div class="sector-card"><span class="sector-icon">🏘️</span><div class="sector-name">Voluntary Housing</div><div class="sector-count">Regulated · Board-governed</div></div>
+      <div class="sector-card"><span class="sector-icon">💛</span><div class="sector-name">NFPs &amp; Charities</div><div class="sector-count">Small teams · High accountability</div></div>
+      <div class="sector-card"><span class="sector-icon">🏦</span><div class="sector-name">Credit Unions</div><div class="sector-count">Regulated · Member-owned</div></div>
+      <div class="sector-card"><span class="sector-icon">💼</span><div class="sector-name">Professional Services</div><div class="sector-count">Accounting, legal &amp; consulting</div></div>
+      <div class="sector-card"><span class="sector-icon">🏥</span><div class="sector-name">Healthcare &amp; Social Care</div><div class="sector-count">High compliance, high need</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="background:var(--bg);">
+  <div class="section-inner">
+    <div class="section-label">Simple Pricing</div>
+    <h2 class="section-title">Transparent. Scalable. No surprises.</h2>
+    <p class="section-sub">Pricing scales with your organisation size. One-off setup fee covers configuration and onboarding. Cancel anytime.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-name">Culture Pulse™ Dashboard</div>
+        <div class="pricing-desc">Monthly executive analytics — 9 RAG-rated tabs, expert narrative, delivered to your private URL.</div>
+        <div class="pricing-audience">HR Director · SMT · Board</div>
+        <div class="price-amount">€350<span>/mo</span></div>
+        <div class="price-range">to €800/month · Setup from €500 (one-off)</div>
+        <ul class="pricing-includes">
+          <li><span class="check">✓</span>9-tab interactive dashboard</li>
+          <li><span class="check">✓</span>RAG-rated culture health score</li>
+          <li><span class="check">✓</span>Expert narrative &amp; actions</li>
+          <li><span class="check">✓</span>Private client URL</li>
+          <li><span class="check">✓</span>Delivered within 48hrs</li>
+        </ul>
+        <a href="mailto:hello@cateai.ie" class="btn-pricing">Book a Demo</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-name">CateAI People Hub™</div>
+        <div class="pricing-desc">Complete branded staff engagement portal with pulse survey and Manager Hub.</div>
+        <div class="pricing-audience">All Employees · HR Manager</div>
+        <div class="price-amount">€200<span>/mo</span></div>
+        <div class="price-range">to €400/month · Setup from €500 (one-off)</div>
+        <ul class="pricing-includes">
+          <li><span class="check">✓</span>Branded staff portal</li>
+          <li><span class="check">✓</span>Your benefits &amp; policies — uploaded by you</li>
+          <li><span class="check">✓</span>Monthly pulse survey</li>
+          <li><span class="check">✓</span>Manager Hub — your resources, your content</li>
+          <li><span class="check">✓</span>P&amp;C AI assistant</li>
+        </ul>
+        <a href="mailto:hello@cateai.ie" class="btn-pricing">Book a Demo</a>
+      </div>
+      <div class="pricing-card pricing-card-featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-name">Full Suite</div>
+        <div class="pricing-desc">Dashboard + People Hub + Pulse Survey — fully connected.</div>
+        <div class="pricing-audience">Complete Solution · Best Value</div>
+        <div class="price-amount" style="color:#fff;">€500<span>/mo</span></div>
+        <div class="price-range">to €1,200/month · Setup from €500 (one-off)</div>
+        <ul class="pricing-includes">
+          <li><span class="check">✓</span>Everything in Dashboard</li>
+          <li><span class="check">✓</span>Everything in People Hub™</li>
+          <li><span class="check">✓</span>Connected pulse survey</li>
+          <li><span class="check">✓</span>Priority support</li>
+          <li><span class="check">✓</span>No long-term contract</li>
+        </ul>
+        <a href="mailto:hello@cateai.ie" class="btn-pricing btn-pricing-gold">Book a Demo</a>
+      </div>
+    </div>
+    <!-- Annual Audit -->
+    <div style="margin-top:2rem;background:linear-gradient(135deg,var(--pu),var(--pu2));border-radius:16px;padding:1.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <div style="color:var(--gl);font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:0.5rem;">⭐ Annual Add-On</div>
+        <div style="color:#fff;font-size:1.05rem;font-weight:700;margin-bottom:0.4rem;">Annual Culture Audit &amp; Board Presentation</div>
+        <div style="color:rgba(255,255,255,0.7);font-size:0.82rem;max-width:520px;line-height:1.6;">12 months of data. One powerful story. A ready-made board presentation summarising your year in people — trends, wins, risks and recommendations.</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="color:var(--gl);font-size:1.5rem;font-weight:700;">POA</div>
+        <div style="color:rgba(255,255,255,0.5);font-size:0.72rem;margin-bottom:0.5rem;">Quoted per organisation</div>
+        <a href="mailto:hello@cateai.ie" style="background:var(--go);color:#1a0a38;padding:8px 18px;border-radius:8px;font-size:0.82rem;font-weight:700;text-decoration:none;">Enquire Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section style="background:linear-gradient(135deg,#F5F0FF,#EDE5FF);">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:2rem;">
+      <div class="section-label" style="text-align:center;">Built on Trust</div>
+      <h2 class="section-title" style="text-align:center;">Your data is safe. Always.</h2>
+      <p style="color:var(--sm);font-size:0.9rem;text-align:center;max-width:580px;margin:0 auto;">The biggest hesitation for any CEO handing over employee data is trust. Here is exactly how we protect it.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card"><div class="trust-icon">🗑️</div><h3>7-Day Security Protocol</h3><p>Raw data is processed and permanently deleted within one week. No exceptions, no retention beyond what is needed.</p></div>
+      <div class="trust-card"><div class="trust-icon">🚀</div><h3>Zero IT Footprint</h3><p>No software installation, no app downloads, no IT procurement hurdles. We work with what you already have.</p></div>
+      <div class="trust-card"><div class="trust-icon">🛡️</div><h3>Isolated AI Projects</h3><p>Every client has a dedicated, secure environment. Your data is never mixed with another organisation's data.</p></div>
+      <div class="trust-card"><div class="trust-icon">🇮🇪</div><h3>Irish Owned &amp; Operated</h3><p>Based in Ireland, serving the UK and Irish SME market. Fully GDPR compliant with a signed DPA before we start.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- INNOVATION CALLOUT -->
+<section style="background:#2a1250;padding:70px 5%;text-align:center;">
+  <div style="max-width:680px;margin:0 auto;">
+    <div class="section-label" style="text-align:center;color:var(--go);">Innovation without Complexity</div>
+    <p style="color:rgba(255,255,255,0.85);font-size:1rem;line-height:1.85;margin:1rem 0 2rem;">We have used advanced AI to build a bridge between scattered manual records and executive-level analytics. CateAI is designed for organisations that want deep people insight and a professional staff experience — without the cost or complexity of traditional HR software.</p>
+    <a href="mailto:hello@cateai.ie" class="btn-primary">Book a 15-Minute Demo →</a>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section id="privacy" style="background:#F5F5F5;">
+  <div style="max-width:800px;margin:0 auto;">
+    <h2 style="color:var(--pu);font-size:1.6rem;font-weight:800;margin-bottom:1rem;">Privacy &amp; Cookie Policy</h2>
+    <div style="background:#fff;border-radius:14px;padding:2rem;border:1px solid #E8DFFF;">
+      <h3 style="color:var(--pu);font-size:1rem;margin-bottom:0.5rem;">Who we are</h3>
+      <p style="color:#718096;font-size:0.85rem;line-height:1.8;margin-bottom:1.25rem;">CateAI Culture Pulse™ is operated by Siobhan Reid, trading as CateAI, based in Ireland. Contact: <a href="mailto:hello@cateai.ie" style="color:var(--go);">hello@cateai.ie</a></p>
+      <h3 style="color:var(--pu);font-size:1rem;margin-bottom:0.5rem;">Data we collect</h3>
+      <p style="color:#718096;font-size:0.85rem;line-height:1.8;margin-bottom:1.25rem;">Contact enquiries collect name and email only. Client HR data is processed under a signed Data Processing Agreement and deleted within 7 days of delivery.</p>
+      <h3 style="color:var(--pu);font-size:1rem;margin-bottom:0.5rem;">Cookies</h3>
+      <p style="color:#718096;font-size:0.85rem;line-height:1.8;margin-bottom:1.25rem;">This website does not use tracking or advertising cookies.</p>
+      <h3 style="color:var(--pu);font-size:1rem;margin-bottom:0.5rem;">Your rights</h3>
+      <p style="color:#718096;font-size:0.85rem;line-height:1.8;">Contact <a href="mailto:hello@cateai.ie" style="color:var(--go);">hello@cateai.ie</a> to access, correct or delete your data. Complaints: <a href="https://www.dataprotection.ie" style="color:var(--go);">dataprotection.ie</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <div class="logo-diamond"></div>
+        <span>Cate<em>AI</em></span>
+      </div>
+      <p class="footer-tagline">Intelligent Tools for a Better Workplace.</p>
+      <a href="mailto:hello@cateai.ie" class="footer-email">hello@cateai.ie</a>
+      <p style="color:rgba(255,255,255,0.4);font-size:0.75rem;margin-top:0.5rem;">cateai.ie</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <div class="footer-col-title">Products</div>
+        <a href="#products" class="footer-col">Culture Pulse™ Dashboard</a>
+        <a href="http://hub.cateai.ie" target="_blank" class="footer-col">People Hub™</a>
+        <a href="#skills" class="footer-col">CateAI Skills</a>
+        <a href="#pricing" class="footer-col">Pricing</a>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <a href="#about" class="footer-col">Our Story</a>
+        <a href="#sectors" class="footer-col">Who We Serve</a>
+        <a href="#privacy" class="footer-col">Privacy Policy</a>
+        <a href="#privacy" class="footer-col">Cookie Policy</a>
+        <a href="mailto:hello@cateai.ie" class="footer-col">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 CateAI Culture Pulse™ · CateAI People Hub™ · All rights reserved · cateai.ie</p>
+  </div>
+</footer>
+
+</body>
+</html>
